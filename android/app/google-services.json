@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054629527304",
+    "project_id": "sonar-89a4a",
+    "storage_bucket": "sonar-89a4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054629527304:android:368f1669d78c39e3f9f6bd",
+        "android_client_info": {
+          "package_name": "com.sonar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054629527304-g84h7drude96k1ph0hg1hj8uk16ugjkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByDXiEux3nvYXLa7_j2XVri-YlhN1dBcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054629527304-g84h7drude96k1ph0hg1hj8uk16ugjkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
