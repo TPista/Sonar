@@ -6,6 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import PerfilScreen from '../screens/PerfilScreen';
 import MapaScreen from '../screens/MapaScreen';
+import TelefonosScreen from '../screens/TelefonosScreen';
+
 
  
  const Stack = createStackNavigator();
@@ -31,11 +33,18 @@ import MapaScreen from '../screens/MapaScreen';
        />
         
 
-        <Stack.Screen 
+      <Stack.Screen 
        name = "Mapa" 
        component = {MapaScreen} 
        
        /> 
+
+      <Stack.Screen 
+       name = "Telefonos" 
+       component = {TelefonosScreen} 
+       
+       /> 
+
        </Stack.Navigator>
     
    );
