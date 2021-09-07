@@ -4,6 +4,7 @@ import { View, Text, StyleSheet} from 'react-native';
 import { useReducer } from 'react/cjs/react.production.min';
 
 import FormButton from '../components/FormButton';
+import FormButton2 from '../components/FormButton2';
 
 import { AuthContext } from '../navigation/AuthProvider';
 
@@ -14,14 +15,14 @@ return(
 <View style={styles.containter}>
    
     <Text justifyContent= "center"> BIENVENIDO {user.email}</Text>
-    
+
     <FormButton buttonTitle="IR AL MAPA" onPress= {() => navigation.navigate('Mapa')} />
 
     <FormButton buttonTitle="Telefonos" onPress= {() => navigation.navigate('Telefonos')} />
 
     <FormButton buttonTitle="Ajustes" onPress= {() => navigation.navigate('Perfil')} />
 
-    <FormButton buttonTitle="Logout" onPress={()=> logout()} />
+    <FormButton2 buttonTitle="Logout" onPress={()=> logout()} />
     
 </View>
 );
