@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React, {useState, useContext} from 'react';
+import { View, Text, Button, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 import { useReducer } from 'react/cjs/react.production.min';
 
@@ -8,22 +8,21 @@ import FormButton from '../components/FormButton';
 import { AuthContext } from '../navigation/AuthProvider';
 
 
-const HomeScreen =({navigation})  => {
+const PerfilScreen =({navigation})  => {
 const {user, logout}=useContext (AuthContext);
 return(
 <View style={styles.containter}>
    
-    <Text justifyContent= "center"> BIENVENIDO {user.email}</Text>
+    <Text justifyContent= "center"> AJUSTES DE PERFIL DE {user.email}</Text>
     <FormButton buttonTitle="Logout" onPress={()=> logout()} />
-
-    <FormButton buttonTitle="Ajustes" onPress= {() => navigation.navigate('Perfil')} />
+    
     
     
 </View>
 );
 };
 
-export default HomeScreen;
+export default PerfilScreen;
 
 const styles = StyleSheet.create({
 
