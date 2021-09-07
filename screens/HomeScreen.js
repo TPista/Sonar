@@ -17,6 +17,8 @@ return(
     <FormButton buttonTitle="Logout" onPress={()=> logout()} />
 
     <FormButton buttonTitle="Ajustes" onPress= {() => navigation.navigate('Perfil')} />
+
+    <FormButton buttonTitle="IR AL MAPA" onPress= {() => navigation.navigate('Mapa')} />
     
     
 </View>

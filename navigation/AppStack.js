@@ -4,7 +4,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from '../screens/HomeScreen';
-import PerfilScreen from '../screens/HomeScreen';
+import PerfilScreen from '../screens/PerfilScreen';
+import MapaScreen from '../screens/MapaScreen';
 
  
  const Stack = createStackNavigator();
@@ -29,6 +30,12 @@ import PerfilScreen from '../screens/HomeScreen';
        
        />
         
+
+        <Stack.Screen 
+       name = "Mapa" 
+       component = {MapaScreen} 
+       
+       /> 
        </Stack.Navigator>
     
    );
