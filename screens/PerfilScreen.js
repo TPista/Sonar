@@ -6,9 +6,11 @@ import {
   ImageBackground,
   TextInput,
   StyleSheet,
+  Alert,
 } from 'react-native';
 
 import { AuthContext } from '../navigation/AuthProvider';
+import firestore from '@react-native-firebase/firestore';
 
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,9 +19,58 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import FormButton from '../components/FormButton';
 import FormButton2 from '../components/FormButton2';
+import { useEffect } from 'react/cjs/react.development';
+
+
+
+
+
+
+
 
 const PerfilScreen = () => {
     const {user, logout}=useContext (AuthContext);
+    const [userData, setUserData]= useState (null);
+
+
+    const getUser = async () => {
+  
+      const currentUser = await firestore()
+    
+      .collection('users')
+      .doc(user.uid)
+      .get()
+      .then( (documentSnapshot) =>{
+        if (documentSnapshot.exists) {
+        console.log('User Data', documentSnapshot.data());
+        setUserData(documentSnapshot.data());
+        
+      }
+    })
+    
+    }
+    
+    const handleUpdate = () => {
+    firestore()
+    .collection('users')
+    .doc(user.id)
+    .update({
+      fname: userData.fname    
+     
+       })
+
+       .then (() => {
+        console.log('User updated');
+          Alert.alert(
+            'profile updated OK'
+          );
+       })
+    
+    }
+    
+    useEffect( () => {
+      getUser();
+    }, []);
 
   return (
     <View style={styles.container}>
@@ -37,6 +88,8 @@ const PerfilScreen = () => {
             placeholder="First Name"
             placeholderTextColor="#666666"
             autoCorrect={false}
+            value={userData ? userData.fname : ''}
+            onChangeText={(txt) => setUserData({...userData, fname: txt})}
             style={[
               styles.textInput,
               
@@ -105,7 +158,7 @@ const PerfilScreen = () => {
             ]}
           />
         </View>
-        <FormButton buttonTitle="Actualizar" onPress= {() => navigation.navigate('Home')} />
+        <FormButton buttonTitle="Actualizar" onPress= {handleUpdate} />
       
     </View>
   );

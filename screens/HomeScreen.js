@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { Image,View, Text, StyleSheet} from 'react-native';
 
 import { useReducer } from 'react/cjs/react.production.min';
 
@@ -13,7 +13,9 @@ const HomeScreen =({navigation})  => {
 const {user, logout}=useContext (AuthContext);
 return(
 <View style={styles.containter}>
-   
+
+    <Image align="right" source= {require('../assets/sonar.png')} />
+
     <Text justifyContent= "center"> BIENVENIDO {user.email}</Text>
 
     <FormButton buttonTitle="IR AL MAPA" onPress= {() => navigation.navigate('Mapa')} />
