@@ -53,7 +53,7 @@ const PerfilScreen = () => {
     const handleUpdate = () => {
     firestore()
     .collection('users')
-    .doc(user.id)
+    .doc(user.uid)
     .update({
       fname: userData.fname    
      
@@ -78,7 +78,7 @@ const PerfilScreen = () => {
         <View style={{alignItems: 'center'}}>
         
           <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            {user.email}
+            {userData.fname}
           </Text>
         </View>
 
@@ -90,74 +90,15 @@ const PerfilScreen = () => {
             autoCorrect={false}
             value={userData ? userData.fname : ''}
             onChangeText={(txt) => setUserData({...userData, fname: txt})}
-            style={[
-              styles.textInput,
-              
-            ]}
+            style={[styles.textInput ]}
           />
+          
         </View>
-        <View style={styles.action}>
-          <FontAwesome name="user-o" size={20} />
-          <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-             
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <Feather name="phone"  size={20} />
-          <TextInput
-            placeholder="Phone"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-             
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="envelope-o"  size={20} />
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="#666666"
-            keyboardType="email-address"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-             
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <FontAwesome name="globe"  size={20} />
-          <TextInput
-            placeholder="Country"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-             
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <Icon name="map-marker-outline"  size={20} />
-          <TextInput
-            placeholder="City"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              
-            ]}
-          />
-        </View>
+       
+       
+        
+        
+      
         <FormButton buttonTitle="Actualizar" onPress= {handleUpdate} />
       
     </View>
