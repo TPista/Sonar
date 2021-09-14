@@ -43,7 +43,7 @@ const PerfilScreen = () => {
       .then( (documentSnapshot) =>{
         if (documentSnapshot.exists) {
         console.log('User Data', documentSnapshot.data());
-        setUserData(documentSnapshot.data());
+                setUserData(documentSnapshot.data());
         
       }
     })
@@ -60,10 +60,8 @@ const PerfilScreen = () => {
        })
 
        .then (() => {
-        console.log('User updated');
-          Alert.alert(
-            'profile updated OK'
-          );
+        console.log('Usuario actualizado');
+          Alert.alert('Se actualizo el Perfil');
        })
     
     }
@@ -78,14 +76,13 @@ const PerfilScreen = () => {
         <View style={{alignItems: 'center'}}>
         
           <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            {userData.fname}
-          </Text>
+          {user.email}           </Text>
         </View>
 
         <View style={styles.action}>
           <FontAwesome name="user-o" size={20} />
           <TextInput
-            placeholder="First Name"
+            placeholder="Nombre"
             placeholderTextColor="#666666"
             autoCorrect={false}
             value={userData ? userData.fname : ''}
