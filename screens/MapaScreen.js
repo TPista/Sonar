@@ -7,27 +7,36 @@ import FormButton from '../components/FormButton';
 
 import { AuthContext } from '../navigation/AuthProvider';
 
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-const MapaScreen =({navigation})  => {
-const {user, logout}=useContext (AuthContext);
-return(
-<View >
-   
-    <Text > AJUSTES DE PERFIL DE {user.email}</Text>
-    <FormButton buttonTitle="Logout" onPress={()=> logout()} />
-    
-    
-    
-</View>
-);
-};
 
-export default MapaScreen;
-const styles = StyleSheet.create({
 
-    containter: {
-        flex: 1,
-        alignItems: 'baseline',
-        justifyContent: 'center'
+export default () => (
+    <View style={styles.container}>
+      <MapView
+        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        style={styles.map}
+        region={{
+          latitude: -34.6146,
+          longitude: -58.4414,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}
+      >
+      </MapView>
+    </View>
+ );
+
+
+ const styles = StyleSheet.create({
+    container: {
+      ...StyleSheet.absoluteFillObject,
+      height: 900,
+      width: 600,
+      justifyContent: 'center',
+      alignItems: 'baseline',
     },
-    });
+    map: {
+      ...StyleSheet.absoluteFillObject,
+    },
+   });
