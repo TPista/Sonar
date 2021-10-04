@@ -14,9 +14,13 @@ const {user, logout}=useContext (AuthContext);
 return(
 <View style={styles.containter}>
 
-    <Image align="right" source= {require('../assets/sonar.png')} />
+    <Image style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center'
+          }} source= {require('../assets/sonar.png')} />
 
-    <Text justifyContent= "center"> BIENVENIDO {user.email}</Text>
+    <Text style={styles.text}> BIENVENIDO {user.email}</Text>
 
     <FormButton buttonTitle="IR AL MAPA" onPress= {() => navigation.navigate('Mapa')} />
 
@@ -38,5 +42,14 @@ containter: {
     flex: 1,
     alignItems: 'baseline',
     justifyContent: 'center'
+},
+text: {
+    
+    fontSize: 20,
+    marginBottom: 10,
+    color: '#051d5f',
+    justifyContent: 'center',
+  alignItems: 'center',
+  alignSelf: 'center'
 },
 });

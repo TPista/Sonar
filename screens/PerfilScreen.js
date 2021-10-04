@@ -92,9 +92,7 @@ const PerfilScreen = () => {
           
         </View>
        
-       
-        
-        
+                   
       
         <FormButton buttonTitle="Actualizar" onPress= {handleUpdate} />
       
