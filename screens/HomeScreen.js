@@ -24,6 +24,9 @@ return(
 
     <FormButton buttonTitle="IR AL MAPA" onPress= {() => navigation.navigate('Mapa')} />
 
+    {/* solo para probar la pantalla delito */}
+    <FormButton buttonTitle="Agregar Delito" onPress= {() => navigation.navigate('Nuevo Delito')} />
+
     <FormButton buttonTitle="Telefonos" onPress= {() => navigation.navigate('Telefonos')} />
 
     <FormButton buttonTitle="Ajustes" onPress= {() => navigation.navigate('Perfil')} />

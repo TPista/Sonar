@@ -39,20 +39,20 @@ const SignupScreen = ({navigation}) => {
           secureTextEntry={true}
         />
   
-        <FormInput
+       {/*  <FormInput
           labelValue={confirmPassword}
           onChangeText={(userPassword) => setConfirmPassword(userPassword)}
           placeholderText="Confirmar Contraseña"
           iconType="lock"
           secureTextEntry={true}
-        />
+        /> */}
   
         <FormButton
           buttonTitle="Registrarse"
           onPress={() => register(email, password)}
         />
   
-        <View style={styles.textPrivate}>
+        {/* <View style={styles.textPrivate}>
           <Text style={styles.color_textPrivate}>
            Al registrarse, usted confirma estar de acuerdo con{' '}
           </Text>
@@ -70,9 +70,9 @@ const SignupScreen = ({navigation}) => {
           </Text>
 
           </TouchableOpacity >
-        </View>
+        </View> */}
   
-        {Platform.OS === 'android' ? (
+        {/* {Platform.OS === 'android' ? (
           <View>
             <SocialButton
               buttonTitle="Registrarse con Facebook"
@@ -90,7 +90,7 @@ const SignupScreen = ({navigation}) => {
               onPress={() => {}}
             />
           </View>
-        ) : null}
+        ) : null} */}
   
         <TouchableOpacity
           style={styles.navButton}

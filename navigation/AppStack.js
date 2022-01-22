@@ -7,6 +7,8 @@ import HomeScreen from '../screens/HomeScreen';
 import PerfilScreen from '../screens/PerfilScreen';
 import MapaScreen from '../screens/MapaScreen';
 import TelefonosScreen from '../screens/TelefonosScreen';
+import DelitoScreen from '../screens/DelitoScreen';
+
 
 
  
@@ -42,6 +44,12 @@ import TelefonosScreen from '../screens/TelefonosScreen';
       <Stack.Screen 
        name = "Telefonos" 
        component = {TelefonosScreen} 
+       
+       /> 
+
+      <Stack.Screen 
+       name = "Nuevo Delito" 
+       component = {DelitoScreen} 
        
        /> 
 

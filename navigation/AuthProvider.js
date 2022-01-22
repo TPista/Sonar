@@ -20,12 +20,21 @@ return(
         login: async (email, password)=> {
 
             try{
-
+                
               await  auth().signInWithEmailAndPassword(email,password)
+              
 
             } catch(e){
-
+               
+                
                 console.log(e);
+
+                if ( user.email.length == 0 || user.password.length == 0 ) {
+                    Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+                        {text: 'Okay'}
+                    ]);
+                    return;
+                }
             }
         },
 

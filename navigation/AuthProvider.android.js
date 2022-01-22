@@ -15,8 +15,22 @@ export const AuthProvider = ({children}) => {
         setUser,
         login: async (email, password) => {
           try {
+
+            
             await auth().signInWithEmailAndPassword(email, password);
+            
+           
           } catch (e) {
+
+            if ( userEmail.length === 0 || userPassword.length === 0 ) {
+              Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+                  {text: 'Okay'}
+              ]);
+
+              return;
+          }
+
+           
             console.log(e);
           }
         },
@@ -34,7 +48,7 @@ export const AuthProvider = ({children}) => {
                   lname: '',
                   email: email,
                   createdAt: firestore.Timestamp.fromDate(new Date()),
-                  userImg: null,
+                  role: 'reporter',
               })
               //ensure we catch any errors at this stage to advise us if something does go wrong
               .catch(error => {

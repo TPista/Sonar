@@ -24,13 +24,19 @@ import FormButton from '../components/FormButton';
 import FormButton2 from '../components/FormButton2';
 import { useEffect } from 'react/cjs/react.development';
 
-
+import useLocationPermisson from '../hooks/useLocationPermission';
+import useUserCoordinates from '../hooks/useUserCoordinates';
 
 const DelitoScreen = () => {
   const {user, logout}=useContext (AuthContext);
 
   const [userData, setUserData]= useState (null);
 
+  const  {permissionResponse } = useLocationPermisson()
+
+  const  {location, error} = useUserCoordinates(permissionResponse.status)
+  
+  console.log({location,error})
 
   const crearDelito = () => {
     firestore()
@@ -38,8 +44,8 @@ const DelitoScreen = () => {
     .doc(user.uid)
     .set({
       tipoDelito: userData.tipoDelito,
-      descripcion: userData.descripcion    
-
+      descripcion: userData.descripcion,
+      coordinates: location.coords
      
        })
 
@@ -84,8 +90,8 @@ const DelitoScreen = () => {
         </View>
        
                    
-      
-        <FormButton2 buttonTitle="Agregar" onPress= {crearDelito} />
+        { Boolean(location?.coords) && <FormButton2 buttonTitle="Agregar" onPress= {crearDelito} /> }
+        
       
     </View>
   );

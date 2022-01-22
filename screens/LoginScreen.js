@@ -17,14 +17,18 @@ const LoginScreen =({navigation})  => {
 return(
 <View style={styles.containter}>
 
-        <Image 
+        <Image style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center'
+          }}
         source= {require('../assets/sonar.png')}
 
         />
 
 
     
-    <Text justifyContent= "center"> Login Screen SONAR </Text>
+    <Text style={styles.text}> Login SONAR </Text>
     
     
     <FormInput
@@ -51,7 +55,7 @@ return(
         />
 
 
-{Platform.OS === 'android' ? (
+{/* {Platform.OS === 'android' ? (
         <View>
           <SocialButton
             buttonTitle="Iniciar Sesion con Facebook"
@@ -69,17 +73,22 @@ return(
             onPress={() => {}}
           />
         </View>
-      ) : null}
+      ) : null} */}
 
 
 
     <TouchableOpacity onPress= {() => navigation.navigate('Signup')}>
-        <Text> Crear cuenta</Text>
+        <Text style={{
+            fontSize: 21,
+            fontWeight: '500',
+            color: '#2e64e5',
+            fontFamily: 'Lato-Regular'
+          }}> Crear cuenta</Text>
     </TouchableOpacity>
     
-    <TouchableOpacity onPress={()=> alert('reset contraseña')}>
+    {/* <TouchableOpacity onPress={()=> alert('reset contraseña')}>
         <Text> Olvidaste contraseña?</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
 
 </View>
 );
@@ -93,6 +102,15 @@ containter: {
     flex: 1,
     alignItems: 'baseline',
     justifyContent: 'center'
+},
+text: {
+  fontFamily: 'Kufam-SemiBoldItalic',
+  fontSize: 28,
+  marginBottom: 10,
+  color: '#051d5f',
+  justifyContent: 'center',
+alignItems: 'center',
+alignSelf: 'center'
 },
 });
 
