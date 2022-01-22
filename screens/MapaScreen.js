@@ -1,42 +1,82 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { View, Text, Button, StyleSheet, Image, TouchableOpacity} from 'react-native';
-
+import {Component} from 'react';
 import { useReducer } from 'react/cjs/react.production.min';
+import useLocationPermisson from '../hooks/useLocationPermission';
+import useUserCoordinates from '../hooks/useUserCoordinates';
 
-import FormButton from '../components/FormButton';
+import useCrimeReportChanges from '../hooks/useCrimeReportsChanges';
 
-import { AuthContext } from '../navigation/AuthProvider';
+import MapView, { Marker } from "react-native-maps";
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+const sanitizeReportData = (rawReportData) =>{
+
+  // 1. Filter only report with coordinates
+  
+  let sanitizedData = rawReportData.filter(report=> Boolean(report.coordinates))
+  
+  return sanitizedData
+  
+  }
+
+  
+const App = () => {
+  const newReport = useCrimeReportChanges()
+
+  const [marker, setMarker] = useState([]);
 
 
+  const [reports, setReports]  = useState([])
 
-export default () => (
+  useEffect(()=>{ setReports(sanitizeReportData([...reports,newReport]))
+  
+  },[newReport.tipoDelito])
+  
+
+
+  const handleNewMarker = (coordinate) => {
+    setMarker([...marker, coordinate]);
+  };
+
+  return (
     <View style={styles.container}>
       <MapView
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        onPress={(e) => handleNewMarker(e.nativeEvent.coordinate)}
         style={styles.map}
-        region={{
-          latitude: -34.6146,
-          longitude: -58.4414,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
+        initialRegion={{
+          latitude: 37.42597730214824,
+          longitude: -122.0856026405,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
+        showsUserLocation
+        loadingEnabled
+        mapType="terrain"
       >
+         {reports.length > 0 &&
+          reports.map((report) => {
+
+            const coordinate = report.coordinates
+
+
+            return (
+              <Marker coordinate={coordinate} key={Math.random().toString()} />
+            );
+          })}
+
       </MapView>
     </View>
- );
+  );
+};
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 50,
+  },
+  map: {
+    flex: 1,
+  },
+});
 
- const styles = StyleSheet.create({
-    container: {
-      ...StyleSheet.absoluteFillObject,
-      height: 900,
-      width: 600,
-      justifyContent: 'center',
-      alignItems: 'baseline',
-    },
-    map: {
-      ...StyleSheet.absoluteFillObject,
-    },
-   });
+export default App;

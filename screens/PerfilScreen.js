@@ -91,7 +91,30 @@ const PerfilScreen = () => {
           />
           
         </View>
+
+
+        <View style={styles.action}>
+          <FontAwesome name="user-o" size={20} />
+          <TextInput
+            placeholder="Apellido"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[styles.textInput ]}
+          />
+          
+        </View>
        
+
+        <View style={styles.action}>
+          <FontAwesome name="user-o" size={20} />
+          <TextInput
+            placeholder="DNI"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[styles.textInput ]}
+          />
+          
+        </View>
                    
       
         <FormButton buttonTitle="Actualizar" onPress= {handleUpdate} />
