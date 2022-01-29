@@ -21,7 +21,7 @@ const collection =firestore().collection('delitos')
 
                
              
-              setReportedCrime(report)
+              setReportedCrime(newReport)
 
 
             }

@@ -27,7 +27,7 @@ import { useEffect } from 'react/cjs/react.development';
 import useLocationPermisson from '../hooks/useLocationPermission';
 import useUserCoordinates from '../hooks/useUserCoordinates';
 
-const DelitoScreen = () => {
+const DelitoScreen = ({navigation}) => {
   const {user, logout}=useContext (AuthContext);
 
   const [userData, setUserData]= useState (null);
@@ -38,20 +38,36 @@ const DelitoScreen = () => {
   
   console.log({location,error})
 
+  const digitid = (size = 7) => {
+    let digits = "0123456789";
+    let id = "";
+    // A compact alternative for `for (var i = 0; i < step; i++)`.
+    let i = size;
+    while (i--) {
+      // `| 0` is more compact and faster than `Math.floor()`.
+      id += digits[(Math.random() * 10) | 0];
+    }
+    return id;
+  };
+
   const crearDelito = () => {
+    const reportId = digitid(20)
     firestore()
     .collection('delitos')
-    .doc(user.uid)
+    .doc(reportId)
     .set({
       tipoDelito: userData.tipoDelito,
+      reportId: reportId,
       descripcion: userData.descripcion,
-      coordinates: location.coords
+      coordinates: location.coords,
+      reporterId: user.uid
      
        })
 
        .then (() => {
         console.log('Delito agregado');
-          Alert.alert('Se agrego el Delito');
+          
+          navigation.goBack();
        })
     
     }
