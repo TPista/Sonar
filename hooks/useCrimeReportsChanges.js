@@ -30,7 +30,7 @@ const collection =firestore().collection('delitos')
             }
 
             if (change.type === "removed") {
-              // Handle  removed comment
+              console.log("Item has been deleted")
             }
           });
         }

@@ -8,11 +8,12 @@ import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 import useCrimeReportChanges from '../hooks/useCrimeReportsChanges';
 
 import { AuthContext } from '../navigation/AuthProvider';
-
+import deleteReportAsync from '../api/deleteReport';
 
 import MapView, { Marker } from "react-native-maps";
 import { Callout } from 'react-native-maps';
 
+const deleteReportLocal = (prevReports=[],reportToDelete)=> prevReports.filter(report=> report.reportId !== reportToDelete)
 
 const sanitizeReportData = (rawReportData) =>{
 
@@ -25,33 +26,15 @@ const sanitizeReportData = (rawReportData) =>{
   }
 
   
-  const handleReportDelete = (report, user) =>{
-    if(report.reporterId === user.uid){
-  return  Alert.alert(
-      "Do you want to delete this report",
-      report.description,
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-        text:"Confirm Delete",
-        onPress: () => console.log("Deleting ....")
-         
-      }
-      ]  
-    );
   
-    }
-  
-  }
   
   
   
 const App = ({navigation}) => {
   const {user, logout}=useContext (AuthContext);
   const [userData, setUserData]= useState (null);
+
+
 
   const  ReportButton = ({onPress})=>{
 
@@ -110,7 +93,34 @@ const App = ({navigation}) => {
   },[newReport.tipoDelito])
   console.log(reports)
 
+const handleReportDelete = (report, user) =>{
+    if(report.reporterId === user.uid){
+  return  Alert.alert(
+      "Quiere borrar este delito?",
+      report.description,
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+        text:"Confirmar Borrado",
+        onPress: () => deleteReportAsync(report.reportId).then(()=>{
 
+
+          const updatedReports = deleteReportLocal(reports,report.reportId)
+          
+          setReports(updatedReports)
+          
+          })
+         
+      }
+      ]  
+    );
+  
+    }
+  
+  }
   const handleNewMarker = (coordinate) => {
     setMarker([...marker, coordinate]);
   };

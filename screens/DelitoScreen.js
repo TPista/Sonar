@@ -84,7 +84,7 @@ const DelitoScreen = ({navigation}) => {
         <View style={styles.action}>
           {/* <FontAwesome name="user-o" size={20} /> */}
           <TextInput
-            placeholder="Seleccionar Delito"
+            placeholder="Titulo del Delito"
             placeholderTextColor="#666666"
             autoCorrect={false}
             onChangeText={(txt) => setUserData({...userData, tipoDelito: txt})}
