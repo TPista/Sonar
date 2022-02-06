@@ -46,6 +46,7 @@ export const AuthProvider = ({children}) => {
               .set({
                   fname: '',
                   lname: '',
+                  dni: '',
                   email: email,
                   createdAt: firestore.Timestamp.fromDate(new Date()),
                   role: 'reporter',

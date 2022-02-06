@@ -60,7 +60,8 @@ const DelitoScreen = ({navigation}) => {
       reportId: reportId,
       descripcion: userData.descripcion,
       coordinates: location.coords,
-      reporterId: user.uid
+      reporterId: user.uid,
+      createdAt: firestore.Timestamp.fromDate(new Date())
      
        })
 

@@ -55,7 +55,9 @@ const PerfilScreen = () => {
     .collection('users')
     .doc(user.uid)
     .update({
-      fname: userData.fname    
+      fname: userData.fname,  
+      lname: userData.lname,
+      dni: userData.dni  
      
        })
 
@@ -100,6 +102,7 @@ const PerfilScreen = () => {
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[styles.textInput ]}
+            onChangeText={(txt) => setUserData({...userData, lname: txt})}
           />
           
         </View>
@@ -112,6 +115,7 @@ const PerfilScreen = () => {
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[styles.textInput ]}
+            onChangeText={(txt) => setUserData({...userData, dni: txt})}
           />
           
         </View>
